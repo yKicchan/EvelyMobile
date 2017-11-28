@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Evely Mobile Application</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_home">Home</string>
+    <string name="navigation_drawer_setting">Settings</string>
+
+    <!--Menu Actions-->
+    <string name="toolbar_notification">Notification</string>
+    <string name="toolbar_search">Search</string>
+    <string name="dummy_search_text">Search Event</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="string_blank"></string>
+
+    <!-- View Actions -->
+    <string name="filter_all">All</string>
+    <string name="filter_friends">Friends</string>
+    <string name="action_explore">Explore</string>
+    <string name="action_share">Share</string>
+    <string name="action_reply">Reply</string>
+    <string name="action_view_replies">View 4 replies</string>
+    <string name="action_see_all_dates">See all dates</string>
+    <string name="action_get_directions">Get Directions</string>
+
+    <!-- View Titles-->
+    <string name="tab_title_home">Home</string>
+    <string name="tab_title_nearby">Nearby</string>
+    <string name="tab_title_search">Search</string>
+    <string name="tab_title_favorite">Favorite</string>
+    <string name="tab_title_notifications">Notifications</string>
+    <string name="tab_title_blank"></string>
+    <string name="hosted_by">Hosted by</string>
+    <string name="ticket_available">Ticket available</string>
+    <string name="upcoming_dates">Upcoming dates</string>
+    <string name="location_title">About the location</string>
+
+    <!-- Supportive Texts-->
+    <string name="comment_message_hint">Write a comment</string>
+
+    <!-- Sample Texts-->
+    <string name="sample_title">Mathematics</string>
+    <string name="sample_created_at">9 Nov at 04:30</string>
+    <string name="sample_host_name">Functional Mathematics</string>
+    <string name="sample_body">\"On 11 November 1930, patent number US1781541 was awarded to Albert Einstein and his
+        former student Leo Szilard for their invention of the \'Einstein refrigerator\'.\"
+    </string>
+    <string name="sample_upcoming_date">Wed, 22 at 10:00 AM</string>
+    <string name="sample_location">阪急百貨百貨店うめだ本店</string>
+    <string name="sample_other_upcoming_dates">5 upcoming dates</string>
+    <string name="sample_location_address">北区角田町8番7号, Osaka 530-8350</string>
+    <string name="sample_who">Holly Azora Anforth</string>
+    <string name="sample_comment_body">Great, but the professor will just point out that the Mobias strip example is
+        merely a visual aide to help understand the actual thing. Like the Klein bottle or tesserect, they only carry
+        those attributes in their respective dimensions
+    </string>
+    <string name="sample_commented_at">1 hour ago</string>
+    <string name="sample_body_title">世界のブックデザイン2016ー17 | World Book Design</string>
+    <string name="sample_body_text">
+        「世界で最も美しい本」コンクールは、その名の通り世界各地の本がデザインの斬新さと芸術性を競うコンクールです。本年度32カ国600作品の応募から選ばれた「世界で最も美しい本コンクール」の乳腺図書とともに、7カ国（日本、ドイツ、オランダ、スイス、カナダ、中国、チェコ）のコンクール入賞図書を加えたおよそ200点が東京・印刷博物館において展示されます。
+    </string>
+    <string name="sample_url">jameworkshop.blogpost.jp</string>
+    <string name="sample_tel_number">06-6485-2602</string>
+    <string name="sample_indicator_month">Nov</string>
+    <string name="sample_indicator_date">24</string>
+    <string name="sample_upcoming_date_short">Fri 10:00 a.m.</string>
+    <string name="sample_mail_address">sunny_moon.android@evely.com</string>
+</resources>
