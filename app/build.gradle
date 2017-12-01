@@ -13,7 +13,7 @@ apply plugin: 'me.tatarka.retrolambda'  //RetroLambda
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.evely.android.evelymobileapplication"
         minSdkVersion 15
@@ -73,6 +73,7 @@ dependencies {
     compile 'org.parceler:parceler-api:1.1.6'
     compile 'com.google.android.gms:play-services-maps:11.2.0'
     testCompile 'junit:junit:4.12'
+
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
     annotationProcessor 'org.parceler:parceler:1.1.6'
