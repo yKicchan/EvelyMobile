@@ -74,9 +74,9 @@
         android:text="@string/sample_host_name"
         app:layout_constraintLeft_toRightOf="@+id/hosted_by"
         app:layout_constraintTop_toTopOf="@+id/hosted_by"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/hosted_by"
-        app:layout_constraintHorizontal_bias="0.0"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintRight_toLeftOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView2"

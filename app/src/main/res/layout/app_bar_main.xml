@@ -43,7 +43,6 @@
                         android:layout_marginBottom="8dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:text="@string/tab_title_home"
-                        android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -58,6 +57,7 @@
                         android:layout_margin="8dp"
                         android:text="@string/dummy_search_text"
                         android:textSize="16sp"
+                        android:visibility="gone"
                         android:gravity="center_vertical"
                         android:background="@drawable/bg_dummy_search"
                         app:layout_constraintRight_toLeftOf="@+id/action_notifications"

@@ -49,10 +49,11 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
+
             <include
                 layout="@layout/event_details_body"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
