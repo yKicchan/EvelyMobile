@@ -22,21 +22,27 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toRightOf="parent">
-                <ImageView
-                        android:id="@+id/action_close"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:padding="7dp"
+                <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        app:srcCompat="@drawable/ic_close"
-                        android:clickable="true"
-                        android:alpha="0.87"
+                        app:revealedDrawable="@drawable/bg_button_pressed_circular"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent">
+                    <ImageView
+                            android:id="@+id/action_close"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="14dp"
+                            app:srcCompat="@drawable/ic_close"
+                            android:clickable="true"
+                            android:alpha="0.54"/>
+                </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
+
                 <com.evely.android.evelymobileapplication.view.design.Separator
                         android:id="@+id/separator1"
                         android:layout_width="0dp"
@@ -80,7 +86,6 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="8dp"
                         android:hint="@string/comment_message_hint"
                         android:ems="10"
                         android:inputType="text"
@@ -88,45 +93,60 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/action_send"/>
-                <ImageView
-                        android:id="@+id/action_capture_image"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:padding="4dp"
+                        app:layout_constraintBottom_toTopOf="@+id/action_capture_image_wrapper"/>
+
+                <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
+                        android:id="@+id/action_capture_image_wrapper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="8dp"
-                        app:srcCompat="@drawable/ic_picture"
-                        android:clickable="true"
-                        android:alpha="0.87"
+                        app:revealedDrawable="@drawable/bg_button_pressed_round"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                <ImageView
-                        android:id="@+id/action_select_gif"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:padding="4dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginStart="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent">
+                    <ImageView
+                            android:id="@+id/action_capture_image"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="12dp"
+                            app:srcCompat="@drawable/ic_picture"
+                            android:alpha="0.87"
+                            android:clickable="true"/>
+                </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
+
+                <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginStart="4dp"
                         android:layout_marginBottom="8dp"
-                        app:srcCompat="@drawable/icon_gif"
-                        android:alpha="0.87"
-                        app:layout_constraintLeft_toRightOf="@+id/action_capture_image"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:revealedDrawable="@drawable/bg_button_pressed_round"
+                        app:layout_constraintLeft_toRightOf="@+id/action_capture_image_wrapper"
+                        app:layout_constraintBottom_toBottomOf="parent">
+                    <ImageView
+                            android:id="@+id/action_select_gif"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="12dp"
+                            app:srcCompat="@drawable/icon_gif"
+                            android:alpha="0.87"
+                            android:clickable="true"/>
+                </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
+
                 <android.support.design.widget.FloatingActionButton
                         android:id="@+id/action_send"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="4dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginRight="8dp" android:layout_marginEnd="8dp"
                         app:srcCompat="@drawable/ic_send"
                         app:backgroundTint="@android:color/white"
                         app:fabSize="mini"
                         android:clickable="true"
+                        app:layout_constraintTop_toTopOf="@+id/action_capture_image_wrapper"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"/>
+                        app:layout_constraintBottom_toBottomOf="@+id/action_capture_image_wrapper"/>
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

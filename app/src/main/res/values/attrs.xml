@@ -24,4 +24,8 @@
         </attr>
         <attr name="fill_color" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="PressEffectWrapper">
+        <attr name="revealedDrawable" format="reference"/>
+    </declare-styleable>
 </resources>

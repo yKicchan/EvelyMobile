@@ -18,27 +18,33 @@
             android:textSize="24sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/action_bookmark"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.0" />
-    <ImageView
-            android:id="@+id/action_bookmark"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="16dp"
+            app:layout_constraintRight_toLeftOf="@+id/action_bookmark_wrapper"
+            android:layout_marginRight="8dp"
+            app:layout_constraintHorizontal_bias="0.0" />
+    <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
+            android:id="@+id/action_bookmark_wrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_marginEnd="16dp"
-            android:padding="4dp"
-            app:srcCompat="@drawable/selector_ic_bookmark"
-            android:scaleType="fitCenter"
-            android:tint="@color/selector_action_bookmark_tint"
-            android:alpha="0.54"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:revealedDrawable="@drawable/bg_button_pressed_circular"
+            app:layout_constraintTop_toTopOf="@+id/title"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/title">
+        <ImageView
+                android:id="@+id/action_bookmark"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                app:srcCompat="@drawable/selector_ic_bookmark"
+                android:tint="@color/selector_action_bookmark_tint"
+                android:alpha="0.54"/>
+    </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
+
     <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_photo"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:src="@color/colorContentEmpty"
@@ -47,6 +53,7 @@
             app:civ_border_color="@color/colorBorder"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/hosted_by"
+            android:layout_marginTop="0dp"
     />
     <TextView
             android:id="@+id/hosted_by"
@@ -76,5 +83,5 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintVertical_bias="0.0"/>
 </android.support.constraint.ConstraintLayout>

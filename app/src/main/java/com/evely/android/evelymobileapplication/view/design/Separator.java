@@ -57,7 +57,6 @@ public class Separator extends View {
         fillColor = ta.getColor(R.styleable.Separator_fill_color, Color.BLACK);
         ta.recycle();
 
-        //Cannot be negative.
         strokeWidth = Math.max(strokeWidth, 0);
 
         initPaint();

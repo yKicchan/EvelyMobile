@@ -126,7 +126,7 @@
             android:layout_height="@dimen/bottom_navigation_height"
             android:background="@color/colorComponentBackground"
             android:layout_gravity="bottom"
-            android:translationY="@dimen/bottom_navigation_height">
+            android:translationY="48dp">
         <com.evely.android.evelymobileapplication.view.design.Separator
                 android:id="@+id/separator"
                 android:layout_width="0dp"
@@ -153,6 +153,7 @@
                     android:text="@string/filter_all"
                     android:textColor="@color/selector_filter_tint"
                     android:textSize="15sp"
+                    android:textStyle="bold"
                     android:button="@null"
                     android:checked="true"
                     android:layout_weight="1"/>
@@ -166,33 +167,49 @@
                     android:text="@string/filter_friends"
                     android:textColor="@color/selector_filter_tint"
                     android:textSize="15sp"
+                    android:textStyle="bold"
                     android:button="@null"
                     android:layout_weight="1"/>
         </RadioGroup>
 
-        <ImageView
-                android:id="@+id/action_advanced_filtering"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:padding="4dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginEnd="8dp"
-                app:srcCompat="@drawable/ic_filter"
-                android:tint="@color/colorAccent"
+        <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
+                android:id="@+id/action_advanced_filtering_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
+                app:revealedDrawable="@drawable/bg_button_pressed_circular"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/action_location_settings"/>
-        <ImageView
-                android:id="@+id/action_location_settings"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:padding="4dp"
+                app:layout_constraintRight_toLeftOf="@+id/action_location_settings_wrapper">
+            <ImageView
+                    android:id="@+id/action_advanced_filtering"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    app:srcCompat="@drawable/ic_filter"
+                    android:tint="@color/colorAccent"/>
+        </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
+
+        <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
+                android:id="@+id/action_location_settings_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:layout_marginEnd="12dp"
-                app:srcCompat="@drawable/ic_settings"
-                android:tint="@color/colorAccent"
+                app:revealedDrawable="@drawable/bg_button_pressed_circular"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                    android:id="@+id/action_location_settings"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    app:srcCompat="@drawable/ic_settings"
+                    android:tint="@color/colorAccent"/>
+        </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
     </android.support.constraint.ConstraintLayout>
 </android.support.design.widget.CoordinatorLayout>

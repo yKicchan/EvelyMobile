@@ -44,7 +44,7 @@ public class TabNearbyFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View content = inflater.inflate(R.layout.fragment_nearby_tab, container, false);
+        final View content = inflater.inflate(R.layout.fragment_tab_nearby, container, false);
         ButterKnife.bind(this, content);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);

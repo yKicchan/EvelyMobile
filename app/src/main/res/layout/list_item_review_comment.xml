@@ -67,38 +67,49 @@
             android:text="@string/sample_commented_at"
             app:layout_constraintLeft_toLeftOf="@+id/comment_container"
             app:layout_constraintTop_toBottomOf="@+id/comment_container"/>
-    <TextView
-            android:id="@+id/action_reply"
+    <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="@string/action_reply"
-            android:textColor="@color/colorPrimaryDark"
+            app:revealedDrawable="@drawable/bg_button_pressed_round"
             app:layout_constraintTop_toBottomOf="@+id/comment_container"
-            app:layout_constraintLeft_toRightOf="@+id/commented_at"/>
-    <TextView
-            android:id="@+id/action_view_replies"
+            app:layout_constraintLeft_toRightOf="@+id/commented_at">
+        <TextView
+                android:id="@+id/action_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_reply"
+                android:textColor="@color/colorPrimaryDark"/>
+    </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
+
+    <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
-            android:text="@string/action_view_replies"
-            android:textColor="@color/blackOpacity87"
+            app:revealedDrawable="@drawable/bg_button_pressed_round"
             app:layout_constraintLeft_toLeftOf="@+id/comment_container"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/commented_at"/>
-    <ImageView
-            android:id="@+id/icon_action_view_replies"
-            android:layout_width="20dp"
-            android:layout_height="0dp"
-            android:padding="4dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            app:srcCompat="@drawable/ic_chevron_right"
-            app:layout_constraintTop_toTopOf="@+id/action_view_replies"
-            app:layout_constraintLeft_toRightOf="@+id/action_view_replies"
-            app:layout_constraintBottom_toBottomOf="@+id/action_view_replies"/>
+            app:layout_constraintTop_toBottomOf="@+id/commented_at">
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                    android:id="@+id/action_view_replies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_view_replies"
+                    android:textColor="@color/blackOpacity87"/>
+            <ImageView
+                    android:id="@+id/icon_action_view_replies"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_chevron_right"/>
+        </LinearLayout>
+    </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
 </android.support.constraint.ConstraintLayout>
