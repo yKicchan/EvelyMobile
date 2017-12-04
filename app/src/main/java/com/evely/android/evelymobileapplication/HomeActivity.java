@@ -21,8 +21,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Optional;
 import com.evely.android.evelymobileapplication.module.glide.GlideApp;
 import com.evely.android.evelymobileapplication.view.fragment.HomeFragmentAdapter;
 
@@ -43,7 +41,7 @@ public class HomeActivity extends AppCompatActivity
     ImageView profilePhoto;
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
-    @BindView(R.id.dummy_search)
+    @BindView(R.id.dummy_search_box)
     TextView actionSearch;
     @BindView(R.id.action_notifications)
     ImageView actionNotifications;
