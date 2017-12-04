@@ -6,7 +6,7 @@
         android:layout_height="48dp"
         android:padding="12dp"
         android:tint="@color/selector_tab_item_tint"
-        app:srcCompat="@drawable/selector_ic_favorite"
+        app:srcCompat="@drawable/selector_ic_pin"
         android:background="?attr/selectableItemBackgroundBorderless"/>
 
 

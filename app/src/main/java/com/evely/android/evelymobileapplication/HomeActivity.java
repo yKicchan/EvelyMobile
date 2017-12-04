@@ -155,7 +155,7 @@ public class HomeActivity extends AppCompatActivity
                 R.layout.tab_item_home
                 , R.layout.tab_item_nearby
                 , R.layout.tab_item_search
-                , R.layout.tab_item_bookmark
+                , R.layout.tab_item_pin
         };
         for (int position = 0; position < tabItemLayouts.length; position++)
             tabLayout.getTabAt(position)

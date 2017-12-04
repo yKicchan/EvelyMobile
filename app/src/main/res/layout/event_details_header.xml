@@ -36,7 +36,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:padding="12dp"
-                app:srcCompat="@drawable/selector_ic_bookmark"
+                app:srcCompat="@drawable/selector_ic_pin"
                 android:tint="@color/selector_action_bookmark_tint"
                 android:alpha="0.54"/>
     </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>

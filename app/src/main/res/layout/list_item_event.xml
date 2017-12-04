@@ -77,7 +77,7 @@
             android:padding="1dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            app:srcCompat="@drawable/ic_location"
+            app:srcCompat="@drawable/ic_location_tinted"
             android:alpha="0.54"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/location"
