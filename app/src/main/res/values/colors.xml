@@ -4,7 +4,7 @@
     <color name="colorPrimary">@android:color/white</color>
     <color name="colorPrimaryDark">#1a3840</color>
     <color name="colorAccent">#d90050</color>
-    <color name="colorBackground">#dcdee3</color>
+    <color name="colorBackground">#CFD8DC</color>
 
     <color name="colorDisabled">#dcdee3</color>
     <color name="colorTintSecondary">@android:color/darker_gray</color>
