@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorComponentBackground">
+
+    <ImageView
+        android:id="@+id/ic_notification_type"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:tint="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_location_tinted" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintLeft_toRightOf="@+id/ic_notification_type"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/related_icons_container">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle_image_view"
+            android:src="@color/colorContentEmpty" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:src="@color/colorContentEmpty"
+            android:background="@drawable/bg_circle_image_view"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/overflow_menu"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:alpha="0.54"
+        app:srcCompat="@drawable/ic_overflow_menu2"
+        app:layout_constraintTop_toTopOf="@+id/ic_notification_type"
+        app:layout_constraintBottom_toBottomOf="@+id/ic_notification_type"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/notification_summary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/sample_two_events_are_happening_around_you"
+        android:textColor="@color/colorTextBody"
+        app:layout_constraintLeft_toLeftOf="@+id/related_icons_container"
+        app:layout_constraintTop_toBottomOf="@+id/related_icons_container"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"/>
+
+    <TextView
+        android:id="@+id/notification_details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/sample_the_time_is_over_go_land_from_jetbrains_is_ready_to_go_check_it_out"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/notification_summary"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notification_summary"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <com.evely.android.evelymobileapplication.view.design.Separator
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        app:strokeWidth="@dimen/divider_height"
+        app:fill_color="@color/colorBorder"
+        app:layout_gravity="bottom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</android.support.constraint.ConstraintLayout>
