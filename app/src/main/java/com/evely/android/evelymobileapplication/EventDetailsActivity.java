@@ -1,8 +1,9 @@
 package com.evely.android.evelymobileapplication;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,12 +12,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import butterknife.BindInt;
+
+import com.evely.android.evelymobileapplication.view.EventReviewPopupWindow;
+import com.google.android.gms.maps.MapView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.evely.android.evelymobileapplication.view.EventReviewPopupWindow;
-import com.google.android.gms.maps.MapView;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
@@ -77,15 +79,18 @@ public class EventDetailsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details_main);
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @OnClick(R.id.action_bookmark)
     void onActionBookmark(){
         final boolean isSelected = !actionBookmark.isSelected();
-        //TODO Update a model.
+
         actionBookmark.setSelected(isSelected);
 
-        //TODO Remove it since it is only for debugging
         if(isSelected)
             showReviewWindow();
     }
