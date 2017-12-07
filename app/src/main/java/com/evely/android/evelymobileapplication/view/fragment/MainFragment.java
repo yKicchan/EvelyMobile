@@ -82,9 +82,14 @@ public class MainFragment extends Fragment
     View actionLocationSettings;
 
     private OnActionNotificationsListener onActionNotificationsListener;
+    private OnActionSearchListener onActionSearchListener;
 
     public interface OnActionNotificationsListener {
-        void onNotifIconClick();
+        void onActionNotifications();
+    }
+
+    public interface OnActionSearchListener {
+        void onActionSearch();
     }
 
     public OnActionNotificationsListener getOnActionNotificationsListener() {
@@ -93,6 +98,14 @@ public class MainFragment extends Fragment
 
     public void setOnActionNotificationsListener(OnActionNotificationsListener onActionNotificationsListener) {
         this.onActionNotificationsListener = onActionNotificationsListener;
+    }
+
+    public OnActionSearchListener getOnActionSearchListener() {
+        return onActionSearchListener;
+    }
+
+    public void setOnActionSearchListener(OnActionSearchListener onActionSearchListener) {
+        this.onActionSearchListener = onActionSearchListener;
     }
 
     public MainFragment() {
@@ -251,7 +264,13 @@ public class MainFragment extends Fragment
     @OnClick(R.id.action_notifications)
     void onActionNotifications(){
         if(onActionNotificationsListener != null)
-            onActionNotificationsListener.onNotifIconClick();
+            onActionNotificationsListener.onActionNotifications();
+    }
+
+    @OnClick(R.id.dummy_search_box)
+    void onActionSearch(){
+        if(onActionSearchListener != null)
+            onActionSearchListener.onActionSearch();
     }
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

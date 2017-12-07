@@ -7,22 +7,27 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.evely.android.evelymobileapplication.view.fragment.MainFragment;
 import com.evely.android.evelymobileapplication.view.fragment.NotificationsFragment;
+import com.evely.android.evelymobileapplication.view.fragment.SearchingFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG_MAIN = "main";
     private static final String TAG_NOTIFICATIONS = "notifications";
+    private static final String TAG_SEARCH = "searching";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         final MainFragment fragment = MainFragment.getInstance();
-        fragment.setOnActionNotificationsListener(() -> {
-            replaceFragmentBy(NotificationsFragment.getInstance(), "Notifications");
+        fragment.setOnActionNotificationsListener(() ->
+                replaceFragmentBy(NotificationsFragment.getInstance(), TAG_NOTIFICATIONS));
+        fragment.setOnActionSearchListener(() -> {
+            replaceFragmentBy(SearchingFragment.getInstance(), TAG_SEARCH);
         });
 
-        replaceFragmentBy(fragment, "Main");
+        replaceFragmentBy(fragment, TAG_MAIN);
     }
 
     private void replaceFragmentBy(Fragment fragment, String key){
