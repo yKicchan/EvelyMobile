@@ -1,6 +1,7 @@
 package com.evely.android.evelymobileapplication;
 
 import android.animation.ValueAnimator;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,18 +12,23 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 import com.evely.android.evelymobileapplication.module.glide.GlideApp;
 import com.evely.android.evelymobileapplication.view.fragment.HomeFragmentAdapter;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -163,16 +169,29 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void toggleBottomNavigation(boolean open) {
-        final float from = bottomNavigation.getY();
+        final DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        final int screenHeight = displayMetrics.heightPixels;
+
+        final Rect rectangle = new Rect();
+        getWindow().getDecorView().getWindowVisibleDisplayFrame(rectangle);
+        final int statusBarHeight = rectangle.top;
+
+        Log.d(TAG, "rectangle.height=" + rectangle.height() + " screenHeight=" + screenHeight);
+
+        final float defaultFrom = screenHeight - statusBarHeight;
+
+        final float from;
         final float delta = bottomNavigation.getHeight();
         final float to;
         final ValueAnimator valueAnimator = new ValueAnimator();
         final DenormalizeInterpolator denormalizeInterpolator = new DenormalizeInterpolator();
-
         if (open) {
+            from = defaultFrom;
             to = from - delta;
             valueAnimator.setInterpolator(new DecelerateInterpolator());
         } else {
+            from = defaultFrom + delta;
             to = from + delta;
             valueAnimator.setInterpolator(new AccelerateInterpolator());
         }
