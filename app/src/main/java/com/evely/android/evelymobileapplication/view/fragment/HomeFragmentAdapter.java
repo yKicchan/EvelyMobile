@@ -4,9 +4,13 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
 import com.evely.android.evelymobileapplication.R;
 
-import static com.evely.android.evelymobileapplication.HomeActivity.*;
+import static com.evely.android.evelymobileapplication.view.fragment.MainFragment.TAB_FAVORITE;
+import static com.evely.android.evelymobileapplication.view.fragment.MainFragment.TAB_HOME;
+import static com.evely.android.evelymobileapplication.view.fragment.MainFragment.TAB_NEARBY;
+import static com.evely.android.evelymobileapplication.view.fragment.MainFragment.TAB_SEARCH;
 
 /**
  * Created by Isom on 2017/11/17.

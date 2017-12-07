@@ -1,4 +1,5 @@
-package com.evely.android.evelymobileapplication;
+package com.evely.android.evelymobileapplication.view.fragment;
+
 
 import android.animation.ValueAnimator;
 import android.graphics.Rect;
@@ -7,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,29 +17,36 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.evely.android.evelymobileapplication.R;
 import com.evely.android.evelymobileapplication.module.glide.GlideApp;
-import com.evely.android.evelymobileapplication.view.fragment.HomeFragmentAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class HomeActivity extends AppCompatActivity
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class MainFragment extends Fragment
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static MainFragment fragment;
+
     public static final int TAB_HOME = 0;
     public static final int TAB_NEARBY = 1;
     public static final int TAB_SEARCH = 2;
     public static final int TAB_FAVORITE = 3;
 
-    private static final String TAG = "HomeActivity";
+    private static final String TAG = "MainFragment";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -56,7 +65,8 @@ public class HomeActivity extends AppCompatActivity
     DrawerLayout drawer;
     @BindView(R.id.nav_view)
     NavigationView nav;
-    @Nullable @BindView(R.id.nav_profile_photo)
+    @Nullable
+    @BindView(R.id.nav_profile_photo)
     ImageView navProfilePhoto;
 
     @BindView(R.id.view_pager)
@@ -71,20 +81,45 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.action_location_settings)
     View actionLocationSettings;
 
+    private OnActionNotificationsListener onActionNotificationsListener;
+
+    public interface OnActionNotificationsListener {
+        void onNotifIconClick();
+    }
+
+    public OnActionNotificationsListener getOnActionNotificationsListener() {
+        return onActionNotificationsListener;
+    }
+
+    public void setOnActionNotificationsListener(OnActionNotificationsListener onActionNotificationsListener) {
+        this.onActionNotificationsListener = onActionNotificationsListener;
+    }
+
+    public MainFragment() {
+        // Required empty public constructor
+    }
+
+    public static MainFragment getInstance(){
+        if(fragment == null) fragment = new MainFragment();
+
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        final View content = inflater.inflate(R.layout.fragment_main, container, false);
+
+        ButterKnife.bind(this, content);
         navProfilePhoto = nav.getHeaderView(0)          //NavigationDrawer's header
                 .findViewById(R.id.nav_profile_photo);
 
         //Delegate an ActionBar
-        setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         //Add a NavigationDrawer.
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         nav.setNavigationItemSelectedListener(this);
 
@@ -152,7 +187,7 @@ public class HomeActivity extends AppCompatActivity
         });
 
         //Connect ViewPager to TabLayout
-        final HomeFragmentAdapter adaptor = new HomeFragmentAdapter(this, getSupportFragmentManager());
+        final HomeFragmentAdapter adaptor = new HomeFragmentAdapter(getContext(), getActivity().getSupportFragmentManager());
         viewPager.setAdapter(adaptor);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -166,21 +201,28 @@ public class HomeActivity extends AppCompatActivity
         for (int position = 0; position < tabItemLayouts.length; position++)
             tabLayout.getTabAt(position)
                     .setCustomView(tabItemLayouts[position]);
+
+        return content;
     }
 
     private void toggleBottomNavigation(boolean open) {
         final DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        getActivity()
+                .getWindowManager()
+                .getDefaultDisplay()
+                .getMetrics(displayMetrics);
         final int screenHeight = displayMetrics.heightPixels;
 
         final Rect rectangle = new Rect();
-        getWindow().getDecorView().getWindowVisibleDisplayFrame(rectangle);
+        getActivity()
+                .getWindow()
+                .getDecorView()
+                .getWindowVisibleDisplayFrame(rectangle);
         final int statusBarHeight = rectangle.top;
 
         Log.d(TAG, "rectangle.height=" + rectangle.height() + " screenHeight=" + screenHeight);
 
         final float defaultFrom = screenHeight - statusBarHeight;
-
         final float from;
         final float delta = bottomNavigation.getHeight();
         final float to;
@@ -204,6 +246,12 @@ public class HomeActivity extends AppCompatActivity
         valueAnimator.setFloatValues(0, 1);
         valueAnimator.setDuration(225);
         valueAnimator.start();
+    }
+
+    @OnClick(R.id.action_notifications)
+    void onActionNotifications(){
+        if(onActionNotificationsListener != null)
+            onActionNotificationsListener.onNotifIconClick();
     }
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
