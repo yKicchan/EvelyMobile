@@ -11,8 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 import com.evely.android.evelymobileapplication.EventDetailsActivity;
 import com.evely.android.evelymobileapplication.R;
 import com.evely.android.evelymobileapplication.model.EventModel;
@@ -22,13 +21,17 @@ import com.evely.android.utils.Units;
 import com.pedrogomez.renderers.ListAdapteeCollection;
 import com.pedrogomez.renderers.RVRendererAdapter;
 import com.pedrogomez.renderers.RendererBuilder;
+
 import org.parceler.Parcels;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class TabHomeFragment extends Fragment {
-    private static TabHomeFragment fragment;
+    private static final String TAG = "TabHomeFragment";
 
     @BindView(R.id.event_list)
     RecyclerView eventList;
@@ -40,19 +43,7 @@ public class TabHomeFragment extends Fragment {
     }
 
     public static TabHomeFragment getInstance() {
-        if (fragment == null)
-            fragment = new TabHomeFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
+        return new TabHomeFragment();
     }
 
     @Override
@@ -67,9 +58,8 @@ public class TabHomeFragment extends Fragment {
         eventList.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                if (parent.getChildAdapterPosition(view) != parent.getAdapter().getItemCount() - 1) {
+                if (parent.getChildAdapterPosition(view) != parent.getAdapter().getItemCount() - 1)
                     outRect.bottom = verticalSpaceHeight;
-                }
             }
         });
         model.getRetrievedEvents().observe(evs -> updateRecyclerView(createAdapter(evs)));
@@ -80,10 +70,8 @@ public class TabHomeFragment extends Fragment {
     @NonNull
     private RVRendererAdapter<EventModel> createAdapter(List<EventModel> events) {
         final EventModelRenderer renderer = new EventModelRenderer();
-        renderer.setOnBookmarkedChangedListener((v, checked) -> {
-            // TODO Replace it by the real logic.
-            Toast.makeText(getActivity(), checked ? "Bookmarked" : "Un-bookmarked", Toast.LENGTH_SHORT).show();
-        });
+        renderer.setOnBookmarkedChangedListener((v, checked) ->
+                Toast.makeText(getActivity(), checked ? "Bookmarked" : "Un-bookmarked", Toast.LENGTH_SHORT).show());
         renderer.setOnActionExploreListener(e -> {
             final Intent intent = new Intent(getContext(), EventDetailsActivity.class);
             intent.putExtra("event", Parcels.wrap(e));

@@ -16,6 +16,8 @@ import static com.evely.android.evelymobileapplication.view.fragment.MainFragmen
  * Created by Isom on 2017/11/17.
  */
 public class HomeFragmentAdapter extends FragmentPagerAdapter {
+    private static final String TAG = "HomeFragmentAdapter";
+
     private Context mContext;
 
     public HomeFragmentAdapter(Context context, FragmentManager fm) {
