@@ -14,8 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -34,19 +32,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MainFragment extends Fragment
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "MainFragment";
+
     private static MainFragment fragment;
 
     public static final int TAB_HOME = 0;
     public static final int TAB_NEARBY = 1;
     public static final int TAB_SEARCH = 2;
     public static final int TAB_FAVORITE = 3;
-
-    private static final String TAG = "MainFragment";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -124,20 +119,21 @@ public class MainFragment extends Fragment
         final View content = inflater.inflate(R.layout.fragment_main, container, false);
 
         ButterKnife.bind(this, content);
-        navProfilePhoto = nav.getHeaderView(0)          //NavigationDrawer's header
+
+        //NavigationDrawer's header
+        navProfilePhoto = nav.getHeaderView(0)
                 .findViewById(R.id.nav_profile_photo);
 
         //Delegate an ActionBar
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
-        //Add a NavigationDrawer.
+        //Add a NavigationDrawer
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         nav.setNavigationItemSelectedListener(this);
 
         //Loading an image and set it as a Button to open the drawer.
-        // TODO Replace an sample image url.
         final String url = "http://160.16.140.145:8080/uploads/attachment/5a112b8294f8050056743e41/1bc055e9057ba267d43c272c55f8cd65.jpg";
         GlideApp.with(this)
                 .load(url)
@@ -200,7 +196,7 @@ public class MainFragment extends Fragment
         });
 
         //Connect ViewPager to TabLayout
-        final HomeFragmentAdapter adaptor = new HomeFragmentAdapter(getContext(), getActivity().getSupportFragmentManager());
+        final HomeFragmentAdapter adaptor = new HomeFragmentAdapter(getContext(), getChildFragmentManager());
         viewPager.setAdapter(adaptor);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -219,34 +215,24 @@ public class MainFragment extends Fragment
     }
 
     private void toggleBottomNavigation(boolean open) {
-        final DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity()
-                .getWindowManager()
-                .getDefaultDisplay()
-                .getMetrics(displayMetrics);
-        final int screenHeight = displayMetrics.heightPixels;
-
         final Rect rectangle = new Rect();
         getActivity()
                 .getWindow()
                 .getDecorView()
                 .getWindowVisibleDisplayFrame(rectangle);
-        final int statusBarHeight = rectangle.top;
+        final float screenBottom = rectangle.height();
 
-        Log.d(TAG, "rectangle.height=" + rectangle.height() + " screenHeight=" + screenHeight);
-
-        final float defaultFrom = screenHeight - statusBarHeight;
         final float from;
         final float delta = bottomNavigation.getHeight();
         final float to;
         final ValueAnimator valueAnimator = new ValueAnimator();
         final DenormalizeInterpolator denormalizeInterpolator = new DenormalizeInterpolator();
         if (open) {
-            from = defaultFrom;
+            from = screenBottom;
             to = from - delta;
             valueAnimator.setInterpolator(new DecelerateInterpolator());
         } else {
-            from = defaultFrom + delta;
+            from = screenBottom + delta;
             to = from + delta;
             valueAnimator.setInterpolator(new AccelerateInterpolator());
         }

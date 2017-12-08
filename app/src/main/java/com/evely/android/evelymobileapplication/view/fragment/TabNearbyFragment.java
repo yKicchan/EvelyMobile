@@ -5,8 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 import com.evely.android.evelymobileapplication.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -14,9 +13,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class TabNearbyFragment extends Fragment
         implements OnMapReadyCallback {
-    private static TabNearbyFragment fragment;
+    private static final String TAG = "TabNearbyFragment";
+
     @BindView(R.id.map_view)
     MapView mapView;
     private GoogleMap map;
@@ -26,11 +29,7 @@ public class TabNearbyFragment extends Fragment
     }
 
     public static TabNearbyFragment getInstance() {
-        if (fragment == null)
-            fragment = new TabNearbyFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        return new TabNearbyFragment();
     }
 
     @Override
