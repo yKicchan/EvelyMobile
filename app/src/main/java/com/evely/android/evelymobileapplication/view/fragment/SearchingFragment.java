@@ -9,11 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.evely.android.evelymobileapplication.R;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.evely.android.evelymobileapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,7 +32,6 @@ public class SearchingFragment extends Fragment {
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,8 +42,8 @@ public class SearchingFragment extends Fragment {
         activity.setSupportActionBar(toolbar);
         final ActionBar actionBar = activity.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        activity.setTitle("");
 
         return content;
     }
-
 }
