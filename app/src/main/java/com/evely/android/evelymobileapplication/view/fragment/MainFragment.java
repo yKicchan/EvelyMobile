@@ -31,6 +31,7 @@ import com.evely.android.evelymobileapplication.module.glide.GlideApp;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.evely.android.evelymobileapplication.view.adapter.MainFragmentAdapter;
 
 public class MainFragment extends Fragment
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -196,7 +197,7 @@ public class MainFragment extends Fragment
         });
 
         //Connect ViewPager to TabLayout
-        final HomeFragmentAdapter adaptor = new HomeFragmentAdapter(getContext(), getChildFragmentManager());
+        final MainFragmentAdapter adaptor = new MainFragmentAdapter(getContext(), getChildFragmentManager());
         viewPager.setAdapter(adaptor);
         tabLayout.setupWithViewPager(viewPager);
 

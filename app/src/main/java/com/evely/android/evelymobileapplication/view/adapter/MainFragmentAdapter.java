@@ -1,4 +1,4 @@
-package com.evely.android.evelymobileapplication.view.fragment;
+package com.evely.android.evelymobileapplication.view.adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.evely.android.evelymobileapplication.R;
+import com.evely.android.evelymobileapplication.view.fragment.TabFavoriteFragment;
+import com.evely.android.evelymobileapplication.view.fragment.TabHomeFragment;
+import com.evely.android.evelymobileapplication.view.fragment.TabNearbyFragment;
+import com.evely.android.evelymobileapplication.view.fragment.TabSearchFragment;
 
 import static com.evely.android.evelymobileapplication.view.fragment.MainFragment.TAB_FAVORITE;
 import static com.evely.android.evelymobileapplication.view.fragment.MainFragment.TAB_HOME;
@@ -15,12 +19,12 @@ import static com.evely.android.evelymobileapplication.view.fragment.MainFragmen
 /**
  * Created by Isom on 2017/11/17.
  */
-public class HomeFragmentAdapter extends FragmentPagerAdapter {
-    private static final String TAG = "HomeFragmentAdapter";
+public class MainFragmentAdapter extends FragmentPagerAdapter {
+    private static final String TAG = "MainFragmentAdapter";
 
     private Context mContext;
 
-    public HomeFragmentAdapter(Context context, FragmentManager fm) {
+    public MainFragmentAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }
