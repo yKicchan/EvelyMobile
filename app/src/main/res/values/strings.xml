@@ -10,7 +10,7 @@
     <!--Menu Actions-->
     <string name="toolbar_notification">Notification</string>
     <string name="toolbar_search">Search</string>
-    <string name="dummy_search_text">Search Event</string>
+    <string name="search_hint">Search Event</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="string_blank"></string>

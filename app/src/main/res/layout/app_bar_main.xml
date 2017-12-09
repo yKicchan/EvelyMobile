@@ -16,8 +16,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 app:title="@string/tab_title_home"
-                app:layout_scrollFlags="scroll|enterAlways|snap"
-                android:theme="@style/AppTheme.ActionBar">
+                app:layout_scrollFlags="scroll|enterAlways|snap">
             <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -58,7 +57,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="4dp"
-                        android:text="@string/dummy_search_text"
+                        android:text="@string/search_hint"
                         android:textSize="16sp"
                         android:gravity="center_vertical"
                         android:background="@drawable/bg_dummy_search"
