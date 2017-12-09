@@ -23,7 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SearchDetailsActivity">
+        <activity
+                android:name=".SearchDetailsActivity"
+                android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name=".EventDetailsActivity"
