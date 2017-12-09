@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="sub_navigation_height">48dp</dimen>
     <dimen name="bottom_navigation_height">48dp</dimen>
     <dimen name="divider_height">1px</dimen>
-    <dimen name="dummy_search_width">236dp</dimen>
     <dimen name="dummy_search_height">40dp</dimen>
     <dimen name="dummy_search_padding_horizontal">12dp</dimen>
 </resources>

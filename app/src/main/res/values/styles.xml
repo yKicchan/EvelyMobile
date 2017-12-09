@@ -19,12 +19,6 @@
     </style>
 
     <!-- Separator styleable -->
-    <style name="Separator">
-        <item name="strokeWidth">1dp</item>
-        <item name="orientation">horizontal</item>
-        <item name="layout_gravity">center</item>
-        <item name="fill_color">#030303</item>
-    </style>
 
     <style name="PreferenceTheme" parent="PreferenceThemeOverlay.v14.Material">
         <item name="android:textColorPrimary">@android:color/black</item>

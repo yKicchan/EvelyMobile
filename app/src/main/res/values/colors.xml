@@ -6,7 +6,6 @@
     <color name="colorAccent">#d90050</color>
     <color name="colorBackground">#CFD8DC</color>
 
-    <color name="colorDisabled">#dcdee3</color>
     <color name="colorTintSecondary">@android:color/darker_gray</color>
     <color name="colorBorder">#BDBDBD</color>
     <color name="colorContentEmpty">#BDBDBD</color>
@@ -18,14 +17,7 @@
     <!-- Text Colors -->
     <color name="blackOpacity87">#de000000</color>
     <color name="blackOpacity54">#89000000</color>
-    <color name="whiteOpacity87">#deffffff</color>
-    <color name="whiteOpacity54">#89ffffff</color>
-    <color name="colorTextToolbarTitle">@android:color/white</color>
-    <color name="colorTextSecondary">#8A000000</color>
     <color name="colorTextTitle">@color/blackOpacity87</color>
-    <color name="colorTextTitleSubHeading">@color/blackOpacity54</color>
     <color name="colorTextBody">@color/blackOpacity87</color>
-    <color name="colorTextCaption">@color/blackOpacity54</color>
-    <color name="colorTextActionPrimary">@color/blackOpacity87</color>
     <color name="colorTextActionSecondary">@color/blackOpacity54</color>
 </resources>
