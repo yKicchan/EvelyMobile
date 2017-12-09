@@ -8,8 +8,6 @@
     <string name="navigation_drawer_setting">Settings</string>
 
     <!--Menu Actions-->
-    <string name="toolbar_notification">Notification</string>
-    <string name="toolbar_search">Search</string>
     <string name="search_hint">Search Event</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -31,7 +29,6 @@
     <string name="tab_title_search">Search</string>
     <string name="tab_title_favorite">Favorite</string>
     <string name="tab_title_notifications">Notifications</string>
-    <string name="tab_title_blank"></string>
     <string name="hosted_by">Hosted by</string>
     <string name="ticket_available">Ticket available</string>
     <string name="upcoming_dates">Upcoming dates</string>
@@ -42,7 +39,6 @@
 
     <!-- Sample Texts-->
     <string name="sample_title">Mathematics</string>
-    <string name="sample_created_at">9 Nov at 04:30</string>
     <string name="sample_host_name">Functional Mathematics</string>
     <string name="sample_body">\"On 11 November 1930, patent number US1781541 was awarded to Albert Einstein and his
         former student Leo Szilard for their invention of the \'Einstein refrigerator\'.\"
@@ -69,4 +65,5 @@
     <string name="sample_mail_address">sunny_moon.android@evely.com</string>
     <string name="sample_two_events_are_happening_around_you">Two events are happening around you</string>
     <string name="sample_the_time_is_over_go_land_from_jetbrains_is_ready_to_go_check_it_out">The time is over ! Go Land from Jetbrains is ready to go. Check it out !</string>
+    <string name="search_title">Search</string>
 </resources>

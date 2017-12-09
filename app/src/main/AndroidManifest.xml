@@ -22,15 +22,26 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <meta-data android:name="android.app.default_searchable"
+                       android:value=".SearchDetailsActivity" />
         </activity>
         <activity
                 android:name=".SearchDetailsActivity"
                 android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                       android:resource="@xml/searchable"/>
         </activity>
         <activity
             android:name=".EventDetailsActivity"
             android:parentActivityName=".MainActivity">
         </activity>
+
+        <provider
+                android:name=".model.provider.RecentRecentKeywordsProvider"
+                android:authorities="com.evely.android.model.content.provider.RecentRecentKeywordsProvider" />
     </application>
 
 </manifest>

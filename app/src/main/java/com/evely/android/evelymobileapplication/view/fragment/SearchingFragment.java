@@ -1,20 +1,20 @@
 package com.evely.android.evelymobileapplication.view.fragment;
 
 
-import android.content.Intent;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
+import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.evely.android.evelymobileapplication.R;
-import com.evely.android.evelymobileapplication.SearchDetailsActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,8 +22,9 @@ import com.evely.android.evelymobileapplication.SearchDetailsActivity;
 public class SearchingFragment extends Fragment {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.search_view)
     SearchView searchView;
+
+    private AppCompatActivity activity;
 
     public SearchingFragment() {
         // Required empty public constructor
@@ -34,32 +35,43 @@ public class SearchingFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View content = inflater.inflate(R.layout.fragment_searching, container, false);
         ButterKnife.bind(this, content);
 
-        final AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity = (AppCompatActivity) getActivity();
+
         activity.setSupportActionBar(toolbar);
         final ActionBar actionBar = activity.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                final Intent intent = new Intent(getContext(), SearchDetailsActivity.class);
-                intent.putExtra("query", query);
-                startActivity(intent);
 
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
 
         return content;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_searching, menu);
+
+        final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+        final MenuItem menuItem = menu.findItem(R.id.menu_toolbarsearch);
+        searchView = (SearchView) menuItem.getActionView();
+        searchView.setIconifiedByDefault(false);
+        final ImageView magIcon = searchView.findViewById(R.id.search_mag_icon);
+        magIcon.setImageDrawable(null);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity.getComponentName()));
+
+        // Hack for making the keyboard appear
+        searchView.setIconified(true);
+        searchView.setIconified(false);
     }
 }
