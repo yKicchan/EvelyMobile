@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.evely.android.evelymobileapplication.R;
+import com.evely.android.evelymobileapplication.view.adapter.RecentSuggestionsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +26,9 @@ public class SearchingFragment extends Fragment {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     SearchView searchView;
+
+    @BindView(R.id.recent_searches)
+    RecyclerView recentSearches;
 
     private AppCompatActivity activity;
 
@@ -52,7 +58,10 @@ public class SearchingFragment extends Fragment {
         final ActionBar actionBar = activity.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-
+        recentSearches.setLayoutManager(new LinearLayoutManager(getContext()));
+        final RecentSuggestionsAdapter adapter = new RecentSuggestionsAdapter(getContext());
+        adapter.setOnSuggestionClickListener(query -> searchView.setQuery(query, true));
+        recentSearches.setAdapter(adapter);
 
         return content;
     }

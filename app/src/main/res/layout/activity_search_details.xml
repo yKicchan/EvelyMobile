@@ -58,11 +58,12 @@
                         app:layout_constraintRight_toRightOf="parent">
                     <ImageView
                             android:id="@+id/action_advanced_filtering"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:padding="4dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="12dp"
                             app:srcCompat="@drawable/ic_filter"
-                            android:alpha="0.54"/>
+                            android:alpha="0.54"
+                            android:clickable="true"/>
                 </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
                 <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
                         android:layout_width="wrap_content"
@@ -75,11 +76,12 @@
                         app:layout_constraintRight_toRightOf="parent">
                     <ImageView
                             android:id="@+id/action_overflow"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:padding="4dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="12dp"
                             app:srcCompat="@drawable/ic_overflow_menu2"
-                            android:alpha="0.54"/>
+                            android:alpha="0.54"
+                            android:clickable="true"/>
                 </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.Toolbar>

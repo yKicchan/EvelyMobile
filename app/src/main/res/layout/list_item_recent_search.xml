@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="?attr/listPreferredItemHeightSmall"
+                                             android:background="@color/colorComponentBackground">
+
+    <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"  >
+        <TextView
+                android:id="@+id/searched_word"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
+                android:layout_marginRight="54dp"
+                android:layout_marginEnd="54dp"
+                android:text="@string/sample_searched_word"
+                android:textColor="@color/colorTextBody"
+                android:textSize="16sp"
+                android:clickable="true"
+                android:gravity="center_vertical"/>
+    </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
+
+    <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            app:revealedDrawable="@drawable/bg_button_pressed_circular"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+                android:id="@+id/action_remove"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_close"
+                android:alpha="0.54"
+                android:clickable="true"/>
+    </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
+
+</android.support.constraint.ConstraintLayout>
