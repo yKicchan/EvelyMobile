@@ -9,6 +9,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'me.tatarka.retrolambda'  //RetroLambda
 
 android {
@@ -65,5 +66,12 @@ dependencies {
     compile 'org.parceler:parceler-api:1.1.6' //Parceler
     annotationProcessor 'org.parceler:parceler:1.1.6'
     compile 'com.google.android.gms:play-services-maps:11.2.0'  //    Google Maps
-    testCompile 'junit:junit:4.12' //    JUnit
+    testCompile 'junit:junit:4.12'  //    JUnit
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+kapt {
+    generateStubs = true
+}
+repositories {
+    mavenCentral()
 }
