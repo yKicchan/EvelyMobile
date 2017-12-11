@@ -58,6 +58,7 @@ public class TabNearbyFragment extends Fragment
         //UI settings.
         final UiSettings settings = map.getUiSettings();
         settings.setMapToolbarEnabled(false);
+        settings.setScrollGesturesEnabled(false);
 
         // Add a listener so that marker will move when the map is clicked.
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
