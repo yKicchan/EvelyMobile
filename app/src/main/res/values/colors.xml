@@ -13,6 +13,7 @@
     <color name="colorComponentBackground">@android:color/white</color>
     <color name="colorActionBookmarked">#D9B310</color>
     <color name="colorButtonTextPressed">#11000000</color>
+    <color name="colorBackgroundEventSmallDefault">#FFFDE7</color>
 
     <!-- Text Colors -->
     <color name="blackOpacity87">#de000000</color>
