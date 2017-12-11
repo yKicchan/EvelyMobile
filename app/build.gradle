@@ -1,20 +1,9 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.3.0' //RetroLambda
-    }
-}
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'me.tatarka.retrolambda'  //RetroLambda
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.evely.android.evelymobileapplication"
         minSdkVersion 15
