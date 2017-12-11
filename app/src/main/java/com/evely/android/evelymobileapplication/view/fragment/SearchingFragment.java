@@ -12,12 +12,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 import com.evely.android.evelymobileapplication.R;
 import com.evely.android.evelymobileapplication.view.adapter.RecentSuggestionsAdapter;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,6 +85,7 @@ public class SearchingFragment extends Fragment {
         final ImageView magIcon = searchView.findViewById(R.id.search_mag_icon);
         magIcon.setImageDrawable(null);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity.getComponentName()));
+        searchView.setSuggestionsAdapter(null);
 
         // Hack for making the keyboard appear
         searchView.setIconified(true);
