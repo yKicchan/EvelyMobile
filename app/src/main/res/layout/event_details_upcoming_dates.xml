@@ -81,7 +81,8 @@
                 android:text="@string/action_see_all_dates"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:clickable="true"/>
+                android:clickable="true"
+                android:focusable="true" />
     </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
 
 </android.support.constraint.ConstraintLayout>
