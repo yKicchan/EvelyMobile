@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.evely.android.evelymobileapplication.R;
+import com.evely.android.evelymobileapplication.model.provider.RecentRecentKeywordsProvider;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.evely.android.evelymobileapplication.R;
-import com.evely.android.evelymobileapplication.model.provider.RecentRecentKeywordsProvider;
 
 /**
  * Project EvelyMobileApplication
@@ -22,11 +24,13 @@ import com.evely.android.evelymobileapplication.model.provider.RecentRecentKeywo
  * Created by Shion T. Fujie on 2017/12/10.
  */
 public class RecentSuggestionsAdapter extends RecyclerView.Adapter<RecentSuggestionsAdapter.ViewHolder> {
+    private static final String TAG = "RSuggestionsAdapter";
+
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM  = 1;
 
     private final Context context;
-    private final Cursor cursor;
+    private  Cursor cursor;
 
     private OnSuggestionClickListener onSuggestionClickListener;
 
@@ -45,9 +49,13 @@ public class RecentSuggestionsAdapter extends RecyclerView.Adapter<RecentSuggest
     public RecentSuggestionsAdapter(Context context){
         this.context = context;
 
-        final ContentResolver contentResolver = context.getContentResolver();
+        updateCursor();
+    }
+
+    private void updateCursor(){
         final Uri uri = Uri.parse("content://" + RecentRecentKeywordsProvider.AUTHORITY
                 + "/" + SearchManager.SUGGEST_URI_PATH_QUERY);
+        final ContentResolver contentResolver = context.getContentResolver();
         cursor = contentResolver.query(uri, null, null, new String[]{null}, null);
     }
 
@@ -135,6 +143,27 @@ public class RecentSuggestionsAdapter extends RecyclerView.Adapter<RecentSuggest
         void onSuggestionClick(){
             if(onSuggestionClickListener != null)
                 onSuggestionClickListener.onSuggestionClick(searchedWord.getText().toString());
+        }
+
+        @OnClick(R.id.action_remove)
+        void onActionRemove(){
+            final ContentResolver contentResolver = context.getContentResolver();
+
+            final String query = searchedWord.getText().toString();
+            final Uri uri = Uri.parse("content://" + RecentRecentKeywordsProvider.AUTHORITY
+                    + "/" + "suggestions");
+            final String where = "display1=?";
+            final String[] args = {query};
+
+            contentResolver.delete(uri, where, args);
+
+            removeItselfFromAdapter();
+        }
+
+        private void removeItselfFromAdapter(){
+            final int position = getAdapterPosition();
+            updateCursor();
+            notifyItemRemoved(position);
         }
     }
 }
