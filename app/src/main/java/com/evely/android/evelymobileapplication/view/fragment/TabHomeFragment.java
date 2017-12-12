@@ -49,7 +49,7 @@ public class TabHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View content = inflater.inflate(R.layout.fragment_tab_content_home, container, false);
+        final View content = inflater.inflate(R.layout.fragment_tab_home, container, false);
         ButterKnife.bind(this, content);
 
         //Bind RecyclerView
