@@ -33,7 +33,7 @@ public class ApiClient {
             final OkHttpClient client = new OkHttpClient.Builder().build();
             retrofit = new Retrofit.Builder()
                     .client(client)
-                    .baseUrl("http://160.16.140.145:8888/api/v1/")
+                    .baseUrl("http://160.16.140.145:8888/api/develop/v1/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();

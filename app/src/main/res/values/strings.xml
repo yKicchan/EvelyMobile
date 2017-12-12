@@ -68,4 +68,14 @@
     <string name="search_title">Search</string>
     <string name="sample_searched_word">Searched word</string>
     <string name="header_recent_searches">Recent searches</string>
+    <string name="find_out_what_s_coming_next">Find out what\'s coming next.</string>
+    <string name="view_all">View all</string>
+    <string name="categories">Categories</string>
+    <string name="description_categories">Explore by genres, your interests, motives and more.</string>
+    <string name="a_category">A Category</string>
+    <string name="_9_608_places">9,608 places</string>
+    <string name="new_events">New events</string>
+    <string name="host_name">Host name</string>
+    <string name="sample_new_events">La Galleria Nazionale</string>
+    <string name="sample_summary_new_event">Discover the masterpieces of la Galleria Nazionale in Rome</string>
 </resources>

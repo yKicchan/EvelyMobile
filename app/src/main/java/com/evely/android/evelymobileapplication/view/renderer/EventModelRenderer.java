@@ -10,6 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.evely.android.evelymobileapplication.R;
 import com.evely.android.evelymobileapplication.model.EventModel;
+import com.evely.android.evelymobileapplication.model.User;
 import com.evely.android.evelymobileapplication.module.glide.GlideApp;
 import com.pedrogomez.renderers.Renderer;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -27,7 +28,7 @@ public class EventModelRenderer extends Renderer<EventModel> {
     @BindView(R.id.action_bookmark)
     View actionBookmark;
     @BindView(R.id.host_name)
-    TextView hostedName;
+    TextView hostName;
     @BindView(R.id.profile_photo)
     CircleImageView profilePhoto;
     @BindView(R.id.body)
@@ -89,12 +90,18 @@ public class EventModelRenderer extends Renderer<EventModel> {
     @SuppressWarnings("unused")
     @Override
     public void render() {
-        final EventModel ev = getContent();
-        // TODO Replace an sample image url.
+        final EventModel event = getContent();
+        final User host = event.getHost();
+
         GlideApp.with(getContext())
                 .load("http://160.16.140.145:8080/uploads/attachment/5a112b8294f8050056743e41/1bc055e9057ba267d43c272c55f8cd65.jpg")
                 .fitCenter()
                 .into(profilePhoto);
+        title.setText(event.getTitle());
+        hostName.setText(host.getName());
+        body.setText(event.getBody());
+        upcomingDate.setText(event.getUpcomingDate().getStartDate());
+        location.setText(event.getPlace().getName());
     }
 
     @SuppressWarnings("unused")

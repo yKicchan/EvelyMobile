@@ -2,7 +2,6 @@ package com.evely.android.evelymobileapplication.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -12,19 +11,16 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.PopupWindow;
-import android.widget.Toast;
+
 import butterknife.*;
-import com.evely.android.evelymobileapplication.EventDetailsActivity;
+
 import com.evely.android.evelymobileapplication.R;
 import com.evely.android.evelymobileapplication.model.Comment;
-import com.evely.android.evelymobileapplication.model.EventModel;
 import com.evely.android.evelymobileapplication.model.User;
 import com.evely.android.evelymobileapplication.view.renderer.CommentRenderer;
-import com.evely.android.evelymobileapplication.view.renderer.EventModelRenderer;
 import com.pedrogomez.renderers.ListAdapteeCollection;
 import com.pedrogomez.renderers.RVRendererAdapter;
 import com.pedrogomez.renderers.RendererBuilder;
-import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
