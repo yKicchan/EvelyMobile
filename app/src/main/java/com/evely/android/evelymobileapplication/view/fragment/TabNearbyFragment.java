@@ -11,7 +11,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.LatLng;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,14 +57,11 @@ public class TabNearbyFragment extends Fragment
         //UI settings.
         final UiSettings settings = map.getUiSettings();
         settings.setMapToolbarEnabled(false);
-        settings.setScrollGesturesEnabled(false);
+        settings.setAllGesturesEnabled(false);
 
         // Add a listener so that marker will move when the map is clicked.
-        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
+        map.setOnMapClickListener(latLng -> {
 
-            }
         });
     }
 
