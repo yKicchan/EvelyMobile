@@ -1,13 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.evely.android.evelymobileapplication.view.fragment.TabSearchFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context="com.evely.android.evelymobileapplication.view.fragment.TabSearchFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include
+            layout="@layout/tab_search_new_events"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/string_blank"/>
+            android:layout_height="wrap_content" />
 
-</FrameLayout>
+        <include
+            layout="@layout/tab_search_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

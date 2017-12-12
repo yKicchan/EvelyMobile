@@ -33,7 +33,7 @@
     </style>
 
     <style name="AnimationPopup">
-        <item name="@android:windowEnterAnimation">@anim/popup_window_slide_up</item>
-        <item name="@android:windowExitAnimation">@anim/popup_window_slide_down</item>
+        <item name="android:windowEnterAnimation">@anim/popup_window_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/popup_window_slide_down</item>
     </style>
 </resources>

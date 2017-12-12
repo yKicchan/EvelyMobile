@@ -8,7 +8,7 @@
 
     <color name="colorTintSecondary">@android:color/darker_gray</color>
     <color name="colorBorder">#BDBDBD</color>
-    <color name="colorContentEmpty">#BDBDBD</color>
+    <color name="colorContentEmpty">#bdbdbd</color>
     <color name="colorContentEmptyDark">#9E9E9E</color>
     <color name="colorComponentBackground">@android:color/white</color>
     <color name="colorActionBookmarked">#D9B310</color>

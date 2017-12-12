@@ -13,8 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.evely.android.evelymobileapplication.model.EventModel;
 import com.evely.android.evelymobileapplication.view.EventReviewPopupWindow;
 import com.google.android.gms.maps.MapView;
+
+import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +26,10 @@ import butterknife.OnClick;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class EventDetailsActivity extends AppCompatActivity{
+    private static final String TAG = "EDetailsActivity";
+
+    public static final String ARGS_EVENT = "user_id";
+
     @BindView(R.id.root)
     View root;
     @BindView(R.id.app_bar_image)
@@ -55,6 +62,8 @@ public class EventDetailsActivity extends AppCompatActivity{
     TextView telNumber;
 
     //Body
+    @BindView(R.id.body_title)
+    TextView bodyTitle;
     @BindView(R.id.body_rich_media)
     ImageView bodyRichMedia;
     @BindView(R.id.body_text)
@@ -83,6 +92,25 @@ public class EventDetailsActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        setTitle("");
+
+        final EventModel event = Parcels.unwrap(getIntent().getParcelableExtra(ARGS_EVENT));
+        bindEvent(event);
+    }
+
+    private void bindEvent(final EventModel event){
+        title.setText(event.getTitle());
+        hostName.setText(event.getHost().getName());
+        upcomingDate.setText(event.getUpcomingDate().getStartDate());
+        locationName.setText(event.getPlace().getName());
+        webUrl.setText(event.getUrl());
+        telNumber.setText(event.getTel());
+
+        bodyTitle.setText(event.getTitle());
+        bodyText.setText(event.getBody());
+
+        locationText.setText(event.getPlace().getName());
     }
 
     @OnClick(R.id.action_bookmark)

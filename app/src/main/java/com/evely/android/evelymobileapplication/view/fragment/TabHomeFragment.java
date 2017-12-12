@@ -1,9 +1,11 @@
 package com.evely.android.evelymobileapplication.view.fragment;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +18,7 @@ import com.evely.android.evelymobileapplication.EventDetailsActivity;
 import com.evely.android.evelymobileapplication.R;
 import com.evely.android.evelymobileapplication.model.EventModel;
 import com.evely.android.evelymobileapplication.view.renderer.EventModelRenderer;
-import com.evely.android.evelymobileapplication.viewmodel.HomeViewModel;
+import com.evely.android.evelymobileapplication.viewmodel.LiveEventsViewModel;
 import com.evely.android.utils.Units;
 import com.pedrogomez.renderers.ListAdapteeCollection;
 import com.pedrogomez.renderers.RVRendererAdapter;
@@ -36,7 +38,7 @@ public class TabHomeFragment extends Fragment {
     @BindView(R.id.event_list)
     RecyclerView eventList;
 
-    private HomeViewModel model = new HomeViewModel();
+    private LiveEventsViewModel viewModel;
 
     public TabHomeFragment() {
         // Required empty public constructor
@@ -44,6 +46,13 @@ public class TabHomeFragment extends Fragment {
 
     public static TabHomeFragment getInstance() {
         return new TabHomeFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        viewModel = ViewModelProviders.of(this).get(LiveEventsViewModel.class);
     }
 
     @Override
@@ -62,8 +71,8 @@ public class TabHomeFragment extends Fragment {
                     outRect.bottom = verticalSpaceHeight;
             }
         });
-        model.getRetrievedEvents().observe(evs -> updateRecyclerView(createAdapter(evs)));
-        model.getRetrievedEvents().requestRetrieval();
+        viewModel.getLiveEvents().observe(this, events -> updateRecyclerView(createAdapter(events)));
+
         return content;
     }
 
