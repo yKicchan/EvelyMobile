@@ -148,6 +148,7 @@ public class RecentSuggestionsAdapter extends RecyclerView.Adapter<RecentSuggest
         @OnClick(R.id.action_remove)
         void onActionRemove(){
             final ContentResolver contentResolver = context.getContentResolver();
+            final boolean isOnlySuggestion = cursor.getCount() == 1;
 
             final String query = searchedWord.getText().toString();
             final Uri uri = Uri.parse("content://" + RecentRecentKeywordsProvider.AUTHORITY
@@ -156,7 +157,7 @@ public class RecentSuggestionsAdapter extends RecyclerView.Adapter<RecentSuggest
             final String[] args = {query};
 
             contentResolver.delete(uri, where, args);
-
+            if(isOnlySuggestion) notifyItemRemoved(0);// If this is the only item, remove the header.
             removeItselfFromAdapter();
         }
 
