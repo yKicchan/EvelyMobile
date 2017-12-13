@@ -2,10 +2,10 @@ package com.evely.android.evelymobileapplication.view.fragment;
 
 
 import android.animation.ValueAnimator;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -27,11 +27,12 @@ import android.widget.TextView;
 
 import com.evely.android.evelymobileapplication.R;
 import com.evely.android.evelymobileapplication.module.glide.GlideApp;
+import com.evely.android.evelymobileapplication.view.adapter.MainFragmentAdapter;
+import com.evely.android.utils.ScreenUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.evely.android.evelymobileapplication.view.adapter.MainFragmentAdapter;
 
 public class MainFragment extends Fragment
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,6 +45,8 @@ public class MainFragment extends Fragment
     public static final int TAB_SEARCH = 2;
     public static final int TAB_FAVORITE = 3;
 
+    @BindView(R.id.appbar)
+    AppBarLayout appBarLayout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tab_navigation_container)
@@ -135,7 +138,8 @@ public class MainFragment extends Fragment
         nav.setNavigationItemSelectedListener(this);
 
         //Loading an image and set it as a Button to open the drawer.
-        final String url = "http://160.16.140.145:8080/uploads/attachment/5a112b8294f8050056743e41/1bc055e9057ba267d43c272c55f8cd65.jpg";
+        final String url =
+                "http://160.16.140.145:8080/uploads/attachment/5a112b8294f8050056743e41/1bc055e9057ba267d43c272c55f8cd65.jpg";
         GlideApp.with(this)
                 .load(url)
                 .fitCenter()
@@ -198,6 +202,19 @@ public class MainFragment extends Fragment
 
         //Connect ViewPager to TabLayout
         final MainFragmentAdapter adaptor = new MainFragmentAdapter(getContext(), getChildFragmentManager());
+        adaptor.setOnMapExpansionToggleListener((map, expanded) -> {
+            final int screenTop = 0;
+            final int appbarCollapsedPosition = - appBarLayout.getHeight();
+            final float from = expanded ? screenTop : appbarCollapsedPosition;
+            final float to = expanded ? appbarCollapsedPosition : screenTop;
+
+            final ValueAnimator animator = ValueAnimator.ofFloat(from, to);
+            animator.addUpdateListener(animation -> {
+                final float v = animation.getAnimatedFraction();
+                appBarLayout.setY(v);
+            });
+            animator.start();
+        });
         viewPager.setAdapter(adaptor);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -216,12 +233,7 @@ public class MainFragment extends Fragment
     }
 
     private void toggleBottomNavigation(boolean open) {
-        final Rect rectangle = new Rect();
-        getActivity()
-                .getWindow()
-                .getDecorView()
-                .getWindowVisibleDisplayFrame(rectangle);
-        final float screenBottom = rectangle.height();
+        final float screenBottom = ScreenUtils.getScreenHeight(getActivity());
 
         final float from;
         final float delta = bottomNavigation.getHeight();

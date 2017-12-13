@@ -24,6 +24,16 @@ public class MainFragmentAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
 
+    TabNearbyFragment.OnMapExpansionToggleListener onMapExpansionToggleListener;
+
+    public TabNearbyFragment.OnMapExpansionToggleListener getOnMapExpansionToggleListener() {
+        return onMapExpansionToggleListener;
+    }
+
+    public void setOnMapExpansionToggleListener(TabNearbyFragment.OnMapExpansionToggleListener onMapExpansionToggleListener) {
+        this.onMapExpansionToggleListener = onMapExpansionToggleListener;
+    }
+
     public MainFragmentAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
@@ -37,7 +47,9 @@ public class MainFragmentAdapter extends FragmentPagerAdapter {
                 return TabHomeFragment.getInstance();
             }
             case TAB_NEARBY: {
-                return TabNearbyFragment.getInstance();
+                TabNearbyFragment fragment = TabNearbyFragment.getInstance();
+                fragment.setOnMapExpansionToggleListener(onMapExpansionToggleListener);
+                return fragment;
             }
             case TAB_SEARCH: {
                 return TabSearchFragment.getInstance();
