@@ -9,7 +9,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +27,7 @@ import android.widget.TextView;
 import com.evely.android.evelymobileapplication.R;
 import com.evely.android.evelymobileapplication.module.glide.GlideApp;
 import com.evely.android.evelymobileapplication.view.adapter.MainFragmentAdapter;
+import com.evely.android.evelymobileapplication.view.design.LockableViewPager;
 import com.evely.android.utils.ScreenUtils;
 
 import butterknife.BindView;
@@ -69,7 +69,7 @@ public class MainFragment extends Fragment
     ImageView navProfilePhoto;
 
     @BindView(R.id.view_pager)
-    ViewPager viewPager;
+    LockableViewPager viewPager;
 
     @BindView(R.id.bottom_navigation_container)
     View bottomNavigation;
@@ -205,6 +205,7 @@ public class MainFragment extends Fragment
         adaptor.setOnMapExpansionToggleListener((map, expanded) -> {
             appBarLayout.setExpanded( ! expanded, true);
             toggleBottomNavigation( ! expanded);
+            viewPager.setPagingEnabled( ! expanded);
         });
         viewPager.setAdapter(adaptor);
         tabLayout.setupWithViewPager(viewPager);
