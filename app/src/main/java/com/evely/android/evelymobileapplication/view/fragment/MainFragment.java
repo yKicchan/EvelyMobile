@@ -206,6 +206,10 @@ public class MainFragment extends Fragment
             appBarLayout.setExpanded( ! expanded, true);
             toggleBottomNavigation( ! expanded);
             viewPager.setPagingEnabled( ! expanded);
+            if (expanded)
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            else
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         });
         viewPager.setAdapter(adaptor);
         tabLayout.setupWithViewPager(viewPager);
