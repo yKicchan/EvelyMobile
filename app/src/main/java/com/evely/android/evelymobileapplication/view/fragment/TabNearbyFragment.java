@@ -1,10 +1,15 @@
 package com.evely.android.evelymobileapplication.view.fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.transition.TransitionManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +19,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +42,7 @@ public class TabNearbyFragment extends Fragment
     private ConstraintSet expandedCS;
     private boolean mapExpanded = false;
     private OnMapExpansionToggleListener onMapExpansionToggleListener;
+    private DiminishingGroup diminishingGroup;
 
     public interface OnMapExpansionToggleListener{
         void onMapExpansionToggle(GoogleMap map, boolean expanded);
@@ -67,6 +78,10 @@ public class TabNearbyFragment extends Fragment
         collapsedCS.clone(constraintLayout);
         expandedCS.clone(getContext(), R.layout.tab_neaby_map_expanded);
 
+        diminishingGroup = DiminishingGroup.in(constraintLayout)
+                .without(R.id.map_view)
+                .build();
+
         return content;
     }
 
@@ -81,16 +96,114 @@ public class TabNearbyFragment extends Fragment
 
         map.setOnMapClickListener(latLng -> {
             TransitionManager.beginDelayedTransition(constraintLayout);
-            if(mapExpanded){
-                collapsedCS.applyTo(constraintLayout);
-            }else{
-                expandedCS.applyTo(constraintLayout);
-            }
             mapExpanded = ! mapExpanded;
+
+            if(mapExpanded){
+                expandedCS.applyTo(constraintLayout);
+            }else{
+                collapsedCS.applyTo(constraintLayout);
+            }
+
+            diminishingGroup.animate(mapExpanded);
 
             if(onMapExpansionToggleListener != null)
                 onMapExpansionToggleListener.onMapExpansionToggle(map, mapExpanded);
         });
+    }
+
+    static class DiminishingGroup {
+        private List<ObjectAnimator> animators;
+
+        DiminishingGroup(List<ObjectAnimator> animators){
+            this.animators = animators;
+        }
+
+        static Factory in(ViewGroup target){
+            return new Factory(target);
+        }
+
+        void animate(boolean diminish){
+            cancel();
+
+            if(diminish)
+                start();
+            else
+                reverse();
+        }
+
+        private void start(){
+            for(Animator animator: animators)
+                animator.start();
+        }
+
+        private void reverse(){
+            for(ObjectAnimator animator: animators)
+                animator.reverse();
+        }
+
+        private void cancel(){
+            for(Animator animator: animators)
+                animator.cancel();
+        }
+
+        static class Factory{
+            final Set<Integer> excludedIds;
+            private ViewGroup target;
+
+            Factory(ViewGroup target){
+                this.target = target;
+                excludedIds = new HashSet<>();
+            }
+
+            Factory without(@IdRes int id){
+                excludedIds.add(id);
+
+                return this;
+            }
+
+            DiminishingGroup build(){
+                final List<ObjectAnimator> animators = new ArrayList<>();
+
+                for(int i = 0; i < target.getChildCount(); i ++){
+                    final View view = target.getChildAt(i);
+
+                    if( ! excludedIds.contains(view.getId()) )
+                        animators.add(getDiminishingAnimator(view));
+                }
+
+                return new DiminishingGroup(animators);
+            }
+
+            private ObjectAnimator getDiminishingAnimator(View target){
+                final ObjectAnimator animator = ObjectAnimator.ofFloat(target, "alpha", 1, 0);
+                animator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation, boolean isReverse) {
+                        Log.d(TAG, "DiminishAnimator.onAnimationStart");
+                        super.onAnimationStart(animation, isReverse);
+                        if( isReverse ){
+                            target.setVisibility(View.VISIBLE);
+                        }else {
+                            target.setEnabled(false);
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation, boolean isReverse) {
+                        Log.d(TAG, "DiminishAnimator.onAnimationEnd");
+                        super.onAnimationEnd(animation, isReverse);
+                        if( isReverse ){
+                            target.setEnabled(true);
+                        }else {
+                            target.setVisibility(View.GONE);
+                        }
+                    }
+                });
+                animator.setDuration(175);
+
+                return animator;
+            }
+        }
     }
 
     @Override
