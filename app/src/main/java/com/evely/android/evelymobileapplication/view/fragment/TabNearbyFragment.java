@@ -98,6 +98,8 @@ public class TabNearbyFragment extends Fragment
             TransitionManager.beginDelayedTransition(constraintLayout);
             mapExpanded = ! mapExpanded;
 
+            settings.setAllGesturesEnabled(mapExpanded);
+
             if(mapExpanded){
                 expandedCS.applyTo(constraintLayout);
             }else{
