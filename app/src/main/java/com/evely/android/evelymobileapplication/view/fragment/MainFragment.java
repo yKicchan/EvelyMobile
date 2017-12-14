@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -203,9 +204,35 @@ public class MainFragment extends Fragment
         //Connect ViewPager to TabLayout
         final MainFragmentAdapter adaptor = new MainFragmentAdapter(getContext(), getChildFragmentManager());
         adaptor.setOnMapExpansionToggleListener((map, expanded) -> {
-            appBarLayout.setExpanded( ! expanded, true);
+
+            final AppBarLayout.LayoutParams params =
+                    (AppBarLayout.LayoutParams) tabLayout.getLayoutParams();
+            final int flags = params.getScrollFlags();
+            Log.d(TAG, "flags at the beginning=" + flags);
+            if (expanded) {
+                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+                appBarLayout.setExpanded(false, true);
+            }else{
+                appBarLayout.setExpanded(true, true);
+                final AppBarLayout.OnOffsetChangedListener offsetChangedListener = new AppBarLayout.OnOffsetChangedListener() {
+                    boolean flagsReset = false;
+                    @Override
+                    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                        if (verticalOffset == 0 && ! flagsReset) {
+                            flagsReset = ! flagsReset;
+                            params.setScrollFlags(0);
+                            tabLayout.setLayoutParams(params);
+                        }
+                    }
+                };
+                appBarLayout.addOnOffsetChangedListener(offsetChangedListener);
+            }
+
             toggleBottomNavigation( ! expanded);
+
             viewPager.setPagingEnabled( ! expanded);
+
             if (expanded)
                 drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             else

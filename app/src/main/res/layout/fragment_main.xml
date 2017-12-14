@@ -20,8 +20,7 @@
             android:layout_gravity="start"
             android:background="@color/colorComponentBackground"
             app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_main_drawer"
-    >
+            app:menu="@menu/activity_main_drawer">
         <android.support.constraint.ConstraintLayout
                 android:id="@+id/bottom_navigation_container"
                 android:layout_width="280dp"
