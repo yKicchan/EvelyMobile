@@ -11,32 +11,32 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/map_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/map_title"
             android:textColor="@color/colorTextTitle"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/map_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="@dimen/divider_height"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="24dp"
             android:background="@color/colorBorder"
+            android:padding="@dimen/divider_height"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -57,67 +57,72 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/bottom_navigation_height"
+            android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:paddingBottom="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="@dimen/bottom_navigation_height"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_nearest_events"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_nearest_events">
+
             <include
                 layout="@layout/list_item_near_event"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginStart="16dp" />
+
             <include
                 layout="@layout/list_item_near_event"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp" />
+
             <include
                 layout="@layout/list_item_near_event"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp" />
+
             <com.evely.android.evelymobileapplication.view.design.PressEffectWrapper
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginEnd="16dp"
-                app:revealedDrawable="@drawable/bg_button_pressed_round"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/separator_bottom"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.0">
-            <TextView
-                android:id="@+id/action_view_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/view_all"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:clickable="true"
-                android:focusable="true" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/separator_bottom"
+                app:layout_constraintVertical_bias="0.0"
+                app:revealedDrawable="@drawable/bg_button_pressed_round">
+
+                <TextView
+                    android:id="@+id/action_view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"
+                    android:text="@string/view_all"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </com.evely.android.evelymobileapplication.view.design.PressEffectWrapper>
         </LinearLayout>
 

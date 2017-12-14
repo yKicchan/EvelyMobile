@@ -203,17 +203,8 @@ public class MainFragment extends Fragment
         //Connect ViewPager to TabLayout
         final MainFragmentAdapter adaptor = new MainFragmentAdapter(getContext(), getChildFragmentManager());
         adaptor.setOnMapExpansionToggleListener((map, expanded) -> {
-            final int screenTop = 0;
-            final int appbarCollapsedPosition = - appBarLayout.getHeight();
-            final float from = expanded ? screenTop : appbarCollapsedPosition;
-            final float to = expanded ? appbarCollapsedPosition : screenTop;
-
-            final ValueAnimator animator = ValueAnimator.ofFloat(from, to);
-            animator.addUpdateListener(animation -> {
-                final float v = animation.getAnimatedFraction();
-                appBarLayout.setY(v);
-            });
-            animator.start();
+            appBarLayout.setExpanded( ! expanded, true);
+            toggleBottomNavigation( ! expanded);
         });
         viewPager.setAdapter(adaptor);
         tabLayout.setupWithViewPager(viewPager);
