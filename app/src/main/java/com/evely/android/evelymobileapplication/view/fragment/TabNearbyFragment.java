@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.evely.android.evelymobileapplication.R;
+import com.evely.android.evelymobileapplication.view.design.LockableNestedScrollView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,6 +32,9 @@ import butterknife.ButterKnife;
 public class TabNearbyFragment extends Fragment
         implements OnMapReadyCallback {
     private static final String TAG = "TabNearbyFragment";
+
+    @BindView(R.id.nested_scroll_view)
+    LockableNestedScrollView nestedScrollView;
 
     @BindView(R.id.constraint)
     ConstraintLayout constraintLayout;
@@ -110,6 +114,9 @@ public class TabNearbyFragment extends Fragment
 
             if(onMapExpansionToggleListener != null)
                 onMapExpansionToggleListener.onMapExpansionToggle(map, mapExpanded);
+
+            final boolean scrollable = ! mapExpanded;
+            nestedScrollView.setScrollable(scrollable);
         });
     }
 
