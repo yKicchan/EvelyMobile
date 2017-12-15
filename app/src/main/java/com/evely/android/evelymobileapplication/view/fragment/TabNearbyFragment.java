@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.design.widget.FloatingActionButton;
+import android.support.transition.ChangeBounds;
+import android.support.transition.Transition;
 import android.support.transition.TransitionManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -41,6 +44,11 @@ public class TabNearbyFragment extends Fragment
     @BindView(R.id.map_view)
     MapView mapView;
     private GoogleMap map;
+
+    @BindView(R.id.fab_search)
+    FloatingActionButton fabSearch;
+    @BindView(R.id.fab_point_to_me)
+    FloatingActionButton fabPointToMe;
 
     private ConstraintSet collapsedCS;
     private ConstraintSet expandedCS;
@@ -82,8 +90,13 @@ public class TabNearbyFragment extends Fragment
         collapsedCS.clone(constraintLayout);
         expandedCS.clone(getContext(), R.layout.tab_neaby_map_expanded);
 
+        fabSearch.hide();
+        fabPointToMe.hide();
+
         diminishingGroup = DiminishingGroup.in(constraintLayout)
                 .without(R.id.map_view)
+                .without(R.id.fab_search)
+                .without(R.id.fab_point_to_me)
                 .build();
 
         return content;
@@ -99,15 +112,23 @@ public class TabNearbyFragment extends Fragment
         settings.setAllGesturesEnabled(false);
 
         map.setOnMapClickListener(latLng -> {
-            TransitionManager.beginDelayedTransition(constraintLayout);
             mapExpanded = ! mapExpanded;
 
             settings.setAllGesturesEnabled(mapExpanded);
 
+            final Transition transition = new ChangeBounds();
+            TransitionManager.beginDelayedTransition(constraintLayout, transition);
+
             if(mapExpanded){
                 expandedCS.applyTo(constraintLayout);
+
+                fabSearch.show();
+                fabPointToMe.show();
             }else{
                 collapsedCS.applyTo(constraintLayout);
+
+                fabSearch.hide();
+                fabPointToMe.hide();
             }
 
             diminishingGroup.animate(mapExpanded);

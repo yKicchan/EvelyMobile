@@ -7,11 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
 import com.evely.android.evelymobileapplication.R;
 
 /**
  * Project SampleApiConnectionApp
- * Working on MenuTintUtils
+ * Working on TintUtils
  * Created by Shion T. Fujie on 2017/11/17.
  */
 
@@ -19,11 +20,11 @@ import com.evely.android.evelymobileapplication.R;
  * An Utility class, for compatibility with API level lower than 26,
  * utilizes tinting icons.
  */
-public class MenuTintUtils {
-    private MenuTintUtils() {
+public class TintUtils {
+    private TintUtils() {
     }
 
-    public static void tintAllIcons(Menu menu, final int color) {
+    public static void tintAllIconsInMenu(Menu menu, final int color) {
         for (int i = 0; i < menu.size(); ++i) {
             final MenuItem item = menu.getItem(i);
             tintMenuItemIcon(color, item);
@@ -54,5 +55,16 @@ public class MenuTintUtils {
                 }
             }
         }
+    }
+
+    public static void tintStatusBar(){
+//        // create our manager instance after the content view is set
+//        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+//        // enable status bar tint
+//        tintManager.setStatusBarTintEnabled(true);
+//        // enable navigation bar tint
+//        tintManager.setNavigationBarTintEnabled(true);
+//        // set the transparent color of the status bar, 20% darker
+//        tintManager.setTintColor(Color.parseColor("#20000000"));
     }
 }
